@@ -1,0 +1,61 @@
+﻿
+@model IEnumerable<CustomerModel>
+<div class="pagetitle">
+    <h1>Customer</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active"></li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+        <a class="btn btn-primary " asp-controller="Customer" asp-action="AddCustomer">Add New Department</a>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">CustomerID</th>
+                <th scope="col">CustomerName</th>
+                <th scope="col">HomeAddress</th>
+                <th scope="col">Email</th>
+                <th scope="col">MobileNo</th>
+                <th scope="col">GST_NO</th>
+                <th scope="col">CityName</th>
+                <th scope="col">PinCode</th>
+
+                <th scope="col">NetAmount</th>
+                <th scope="col">UserID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <th>@customer.CustomerID</th>
+                    <td>@customer.CustomerName</td>
+                    <td>@customer.HomeAddress</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.MobileNo</td>
+                    <td>@customer.GST_NO</td>
+                    <td>@customer.CityName</td>
+                    <td>@customer.PinCode</td>
+                    <td>@customer.NetAmount</td>
+                    <td>@customer.UserID</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+
+</section>

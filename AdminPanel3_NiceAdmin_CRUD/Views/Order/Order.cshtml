@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<OrderModel>
+<div class="pagetitle">
+    <h1>Order</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">Order</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+        <a class="btn btn-primary " asp-action="AddOrder" asp-controller="Order">Add New Order</a>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">OrderId</th>
+                <th scope="col">OrderDate</th>
+                <th scope="col">CutomerID</th>
+                <th scope="col">PaymentMode</th>
+                <th scope="col">TotalAmount.</th>
+                <th scope="col">ShippingAddress</th>
+                <th scope="col">UserID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <th>@order.OrderID</th>
+                    <td>@order.OrderDate</td>
+                    <td>@order.CustomerId</td>
+                    <td>@order.PaymentMode</td>
+                    <td>@order.TotalAmount</td>
+                    <td>@order.ShippingAddress</td>
+                    <td>@order.UserID</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+
+</section>

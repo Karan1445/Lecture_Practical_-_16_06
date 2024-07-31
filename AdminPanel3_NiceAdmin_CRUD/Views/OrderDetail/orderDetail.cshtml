@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<OrderDetailModel>
+<div class="pagetitle">
+    <h1>OrderDetail</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">OrderDetail</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+        <a class="btn btn-primary " asp-action="AddOrderDetail" asp-controller="OrderDetail">Add New OrderDetail</a>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">OrderdetailsID</th>
+                <th scope="col">OrderId</th>
+                <th scope="col">ProductID</th>
+                <th scope="col">Quality</th>
+                <th scope="col">Amount</th>
+                <th scope="col">ToatalAmount</th>
+                <th scope="col">UserID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderDetails in Model)
+            {
+                <tr>
+                    <th>@orderDetails.OrderDetailID</th>
+                    <td>@orderDetails.OrderID</td>
+                    <td>@orderDetails.ProductID</td>
+                    <td>@orderDetails.Quantity</td>
+                    <td>@orderDetails.Amount</td>
+                    <td>@orderDetails.TotaAmount</td>
+                    <td>@orderDetails.UserID</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+
+</section>

@@ -1,0 +1,46 @@
+﻿@model StudentModel;
+
+<form>
+    <div>
+        <label>
+            <span class="text-danger">*</span>
+            <label>Enter Student Name</label>
+        </label>
+        <div class="tox-form__group">
+            <input type="text" asp-for="StudentName" class="form-control"/>
+            <span asp-validation-for="StudentName" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>
+            <span class="text-danger">*</span>
+            <label>Enter Enrollment</label>
+        </label>
+        <div class="tox-form__group">
+            <input type="text" asp-for="EnrollMentNo" class="form-control" />
+            <span asp-validation-for="EnrollMentNo" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <label>
+            <span class="text-danger">*</span>
+            <label>Enter Personal Email</label>
+        </label>
+        <div class="tox-form__group">
+            <input type="text" asp-for="EmailPeronal" class="form-control" />
+            <span asp-validation-for="EmailPeronal" class="text-danger"></span>
+        </div>
+    </div>
+    <span><hr/></span>
+    <div class="tox-form__group">   
+
+        <div class="tox-form__group">
+            <input type="submit" class="btn btn-info" value="Submit"/>
+        </div>
+    </div>  
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

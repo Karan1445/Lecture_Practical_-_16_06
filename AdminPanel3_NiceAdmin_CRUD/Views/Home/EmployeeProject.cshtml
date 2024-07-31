@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmployeeProjectModel>
+<div class="pagetitle">
+    <h1>Project</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">Project</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+        <a class="btn btn-primary " asp-action="AddEmployeeProject" asp-controller="Home">Add New Employee Project</a>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">EmployeeProjectID</th>
+                <th scope="col">EmployeeID</th>
+                <th scope="col">ProjectID</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var empproject in Model)
+            {
+                <tr>
+                    <th>@empproject.employeeProjectID</th>
+                    <th>@empproject.employeeID</th>
+                    <th>@empproject.projectID</th>
+                    <td>
+                        <a class="btn btn-warning" asp-action="AddEmployeeProject" asp-controller="Home">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+
+</section>

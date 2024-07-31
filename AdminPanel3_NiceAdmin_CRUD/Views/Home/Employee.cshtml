@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EmployeeModel>
+
+<div class="pagetitle">
+    <h1>Employee</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">Employee</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+         <a class="btn btn-primary " asp-action="AddEmployee" asp-controller="Home">Add New Employee</a>
+    </div>
+    <br />
+            <!-- Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">EmployeeID</th>
+                                <th scope="col">FirstName</th>
+                                <th scope="col">LastName</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">PhoneNo.</th>
+                                <th scope="col">HireDate</th>
+                                <th scope="col">JobTitle</th>
+                                <th scope="col">Salary</th>
+                                <th scope="col">DepartmentID</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    
+                        @foreach (var emp in Model)
+                        {
+                            <tr>
+                                <td>@emp.EmployeeID</td>
+                                <td>@emp.FirstName</td>
+                                <td>@emp.LastName</td>
+                                <td>@emp.Email</td>
+                                <td>@emp.PhoneNumber</td>
+                                <td>@emp.HireDate</td>
+                                <td>@emp.JobTitle</td>
+                                <td>@emp.Salary</td>
+                                <td>@emp.DepartmentID</td>
+                                <td>
+                                    <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    
+                            
+                        </tbody>
+                    </table>
+                    <!-- End Table E -->
+</section>

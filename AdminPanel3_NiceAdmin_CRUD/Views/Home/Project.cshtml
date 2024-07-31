@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProjectModel>
+<div class="pagetitle">
+    <h1>Project</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">Project</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+        <a class="btn btn-primary " asp-action="AddProject" asp-controller="Home">Add New Project</a>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ProjectID</th>
+                <th scope="col">ProjectName</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var project in Model){
+                <tr>
+                    <th>@project.projectID</th>
+                    <td>@project.projectName</td>
+                    <td>@project.startDate</td>
+                    <td>@project.endDate</td>
+                    <td>@project.budget</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+            
+           
+        </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+
+</section>

@@ -1,0 +1,58 @@
+﻿<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Add New Bill</h5>
+
+            <!-- Horizontal Form -->
+            <form asp-controller="OrderDetail" asp-action="AddInController">
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">OrderID</label>
+                    <div class="col-sm-10">
+
+                        <input type="number" class="form-control" name="OrderID" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">ProductID</label>
+                    <div class="col-sm-10">
+
+                        <input type="number" class="form-control" name="ProductID" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Quantity</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="Quantity" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Amount</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="Amount" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">TotalAmount</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="TotalAmount" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">UserID</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="UserID" required />
+                    </div>
+                </div>
+
+
+
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form><!-- End Horizontal Form -->
+
+        </div>
+    </div>
+</section>

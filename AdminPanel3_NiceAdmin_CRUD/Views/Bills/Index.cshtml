@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BillsModel>
+<div class="pagetitle">
+    <h1>Bills</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">Bills</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section">
+    <div class="d-flex justify-content-end align-items-end">
+        <a class="btn btn-primary " asp-action="AddBills" asp-controller="Bills">Add New Bill</a>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">BillId</th>
+                <th scope="col">BillNumber</th>
+                <th scope="col">BillDate</th>
+                <th scope="col">OrderID</th>
+                <th scope="col">TotalAmount</th>
+                <th scope="col">Discount</th>
+                <th scope="col">NetAmount</th>
+                <th scope="col">UserID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bills in Model)
+            {
+                <tr>
+                    <th>@bills.BillId</th>
+                    <td>@bills.BillNumber</td>
+                    <td>@bills.BillDate</td>
+                    <td>@bills.OrderId</td>
+                    <td>@bills.TotalAmount</td>
+                    <td>@bills.Discount</td>
+                    <td>@bills.NetAmount</td>
+                    <td>@bills.UserID</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+
+</section>
