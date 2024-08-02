@@ -1,4 +1,5 @@
-﻿<section class="section">
+﻿@model UserModel;
+<section class="section">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Add New Product</h5>
@@ -6,43 +7,53 @@
             <!-- Horizontal Form -->
             <form asp-controller="User" asp-action="AddInContoller">
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">UserName </label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>UserName </label>
                     <div class="col-sm-10">
 
-                        <input type="text" class="form-control" name="UserName" required />
+                        <input type="text" class="form-control" asp-for="UserName" name="UserName" required />
+                        <span class="text-danger" asp-validation-for="UserName"></span>
                     </div>
                     .
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Email</label>
                     <div class="col-sm-10">
 
-                        <input type="email" class="form-control" name="Email" required />
+                        <input type="email" class="form-control" asp-for="Email"name="Email" required />
+                        <span class="text-danger" asp-validation-for="Email"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Password</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Password</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Password" required />
+                        <input type="text" class="form-control"asp-for="Password" name="Password" required />
+                        <span class="text-danger" asp-validation-for="Password"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">MobileNo</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>MobileNo</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" name="MobileNo" required />
+                        <span class="text-danger" asp-validation-for="MobileNo"></span>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Address</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="Address" required />
+                        <input type="text" class="form-control"asp-for="Address" name="Address" required />
+                        <span class="text-danger" asp-validation-for="Address"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">IsActive</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>IsActive</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="IsActive" required />
+                        <select id="inputState" asp-for="IsActive" name="IsActive" class="form-select">
+                            <option selected>true</option>
+                            <option>false</option>
+                          
+                        </select>
+                        <span asp-validation-for="IsActive" class="text-danger"></span>
                     </div>
                 </div>
 

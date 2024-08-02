@@ -1,46 +1,60 @@
-﻿<section class="section">
+﻿@model OrderModel
+<section class="section">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Add New Bill</h5>
+            <h5 class="card-title">Add New Order</h5>
 
             <!-- Horizontal Form -->
             <form asp-controller="Order" asp-action="AddInController">
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">OrderDate</label>
+                    <label for="inputEmail3"  asp-for="OrderDate" class="col-sm-2 col-form-label"><span class="text-danger">*</span>OrderDate</label>
                     <div class="col-sm-10">
 
                         <input type="date" class="form-control" name="OrderDate" required />
+                        <span class="text-danger" asp-validation-for="OrderDate"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">CustomerID</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Customer ID</label>
                     <div class="col-sm-10">
-
-                        <input type="number" class="form-control" name="CustomerID" required />
+                        <select id="inputState" asp-for="CustomerId" name="CustomerId" class="form-select">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="CustomerId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">PaymentMode</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>PaymentMode</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="PaymentMode" required />
+                        <input type="text" class="form-control"asp-for="PaymentMode" name="PaymentMode" required />
+                        <span asp-validation-for="PaymentMode" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">TotalAmount</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>TotalAmount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="TotalAmount" required />
+                        <input type="number" class="form-control"asp-for="TotalAmount" name="TotalAmount" required />
+                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">ShippingAddress</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>ShippingAddress</label>
                     <div class="col-sm-10">
-                        <input type="" class="form-control" name="ShippingAddress" required />
+                        <input type="" class="form-control" asp-for="ShippingAddress" name="ShippingAddress" required />
+                        <span class="text-danger" asp-validation-for="ShippingAddress"></span>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">UserID</label>
+               <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="UserID" required />
+                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -56,3 +70,8 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

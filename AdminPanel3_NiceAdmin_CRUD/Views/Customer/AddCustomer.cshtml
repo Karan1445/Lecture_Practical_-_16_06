@@ -1,4 +1,5 @@
-﻿<section class="section">
+﻿@model CustomerModel;
+<section class="section">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Add New Bill</h5>
@@ -6,58 +7,72 @@
             <!-- Horizontal Form -->
             <form asp-controller="Customer" asp-action="AddInCustomer">
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">CustomerName</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>CustomerName</label>
                     <div class="col-sm-10">
 
-                        <input type="text" class="form-control" name="CustomerName" required />
+                        <input type="text" asp-for="CustomerName" class="form-control" name="CustomerName"   />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>HomeAddress</label>
+                    <div class="col-sm-10">
+                        <input type="text" asp-for="HomeAddress" class="form-control" name="HomeAddress"   />
+                    <span asp-validation-for="HomeAddress" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">HomeAddress</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="HomeAddress" required />
+                        <input type="email" asp-for="Email" class="form-control" name="Email"   />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>MobileNo</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" name="Email" required />
+                        <input type="number" asp-for="MobileNo" class="form-control" name="MobileNo"   />
+                    <span asp-validation-for="MobileNo" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">MobileNo</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>GST NO</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="MobileNo" required />
+                        <input type="text" asp-for="GST_NO" class="form-control" name="GST_NO"   />
+                    <span asp-validation-for="GST_NO" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">GST NO</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>CityName</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="GST_NO" required />
+                        <input type="text"  asp-for="CityName" class="form-control" name="CityName"   />
+                    <span asp-validation-for="CityName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">CityName</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>PinCode</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="CityName" required />
+                        <input type="number"  asp-for="PinCode" class="form-control" name="PinCode"   />
+                    <span asp-validation-for="PinCode" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">PinCode</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>NetAmount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="PinCode" required />
+                        <input type="number" asp-for="NetAmount" class="form-control" name="NetAmount"   />
+                    <span asp-validation-for="NetAmount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">NetAmount</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="NetAmount" required />
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">UserID</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" name="UserID" required />
+                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="text-center">
@@ -69,3 +84,8 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

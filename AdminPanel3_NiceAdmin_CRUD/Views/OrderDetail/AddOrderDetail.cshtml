@@ -1,4 +1,5 @@
-﻿<section class="section">
+﻿@model OrderDetailModel;
+<section class="section">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Add New Bill</h5>
@@ -10,37 +11,54 @@
                     <div class="col-sm-10">
 
                         <input type="number" class="form-control" name="OrderID" required />
+                        <span asp-validation-for="OrderID" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">ProductID</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Order ID</label>
                     <div class="col-sm-10">
-
-                        <input type="number" class="form-control" name="ProductID" required />
+                        <select id="inputState" asp-for="OrderID" name="OrderID" class="form-select">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="OrderID" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Quantity</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Product ID</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="Quantity" required />
+                        <select id="inputState" asp-for="ProductID" name="ProductID" class="form-select">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="ProductID" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Amount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="Amount" required />
+                        <input type="number"asp-for="Amount" class="form-control" name="Amount" required />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">TotalAmount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="TotalAmount" required />
+                        <input type="number" asp-for="TotaAmount" class="form-control" name="TotalAmount" required />
+                        <span class="text-danger" asp-validation-for="TotaAmount"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">UserID</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="UserID" required />
+                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                        <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -56,3 +74,8 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

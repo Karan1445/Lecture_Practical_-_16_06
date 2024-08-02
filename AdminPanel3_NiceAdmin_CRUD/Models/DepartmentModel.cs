@@ -4,7 +4,8 @@ namespace AdminPanel3_NiceAdmin_CRUD.Models
 {
     public class DepartmentModel
     {
-        [Required]public int departmentID { get; set; }
+        public int departmentID { get; set; }
+        [Required(ErrorMessage ="This Feild is Compulsory")]
         public string departmentName { get; set; }
     }
 }
