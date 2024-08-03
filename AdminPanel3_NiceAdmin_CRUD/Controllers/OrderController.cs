@@ -16,7 +16,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 
 
 
-        };
+     };
         public IActionResult Order()
         {
             return View(order);
