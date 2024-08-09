@@ -1,19 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model IEnumerable<OrderDetailModel>
+﻿@using System.Data
+@model DataTable
 <div class="pagetitle">
     <h1>OrderDetail</h1>
     <nav>
@@ -43,16 +29,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var orderDetails in Model)
+            @foreach (DataRow orderDetails in Model.Rows)
             {
                 <tr>
-                    <th>@orderDetails.OrderDetailID</th>
-                    <td>@orderDetails.OrderID</td>
-                    <td>@orderDetails.ProductID</td>
-                    <td>@orderDetails.Quantity</td>
-                    <td>@orderDetails.Amount</td>
-                    <td>@orderDetails.TotaAmount</td>
-                    <td>@orderDetails.UserID</td>
+                    <th>@orderDetails["OrderDetailID"]</th>
+                    <td>@orderDetails["OrderID"]</td>
+                    <td>@orderDetails["ProductID"]</td>
+                    <td>@orderDetails["Quantity"]</td>
+                    <td>@orderDetails["Amount"]</td>
+                    <td>@orderDetails["TotalAmount"]</td>
+                    <td>@orderDetails["UserID"]</td>
                     <td>
                         <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
                         <button class="btn btn-danger">Delete</button>

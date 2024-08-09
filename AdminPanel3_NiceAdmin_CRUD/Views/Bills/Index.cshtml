@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BillsModel>
+﻿@using System.Data
+@model DataTable
 <div class="pagetitle">
     <h1>Bills</h1>
     <nav>
@@ -29,20 +30,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var bills in Model)
+            @foreach (DataRow bills in Model.Rows)
             {
                 <tr>
-                    <th>@bills.BillId</th>
-                    <td>@bills.BillNumber</td>
-                    <td>@bills.BillDate</td>
-                    <td>@bills.OrderId</td>
-                    <td>@bills.TotalAmount</td>
-                    <td>@bills.Discount</td>
-                    <td>@bills.NetAmount</td>
-                    <td>@bills.UserID</td>
+                     <th>@bills["BillID"]</th>
+                    <td>@bills["BillNumber"]</td>
+                    <td>@bills["BillDate"]</td>
+                    <td>@bills["BillDate"]</td>
+                    <td>@bills["TotalAmount"]</td>
+                    <td>@bills["TotalAmount"]</td>
+                    <td>@bills["TotalAmount"]</td>
+                    <td>@bills["TotalAmount"]</td>
                     <td>
-                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <a class="btn btn-warning" asp-controller="Bills" asp-action="EditInController">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Bills" asp-action="DeleteInController">Delete</a>
                     </td>
                 </tr>
             }

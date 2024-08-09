@@ -1,6 +1,7 @@
 ﻿using AdminPanel3_NiceAdmin_CRUD.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Data;
+using System.Data.SqlClient;
 namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 {
     public class CustomerController : Controller
@@ -9,9 +10,22 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
         {
          new CustomerModel{ CustomerID=1,CustomerName="karan",HomeAddress="Rajkot",Email="goheljitu164@gmail.com",MobileNo="8141953822",GST_NO="124555sd5455",CityName="Rajkot",PinCode="360003",NetAmount=150,UserID=1},
         };
+        IConfiguration configuration;
+        public CustomerController(IConfiguration _configuration) {
+            configuration = _configuration;
+        }
         public IActionResult Index()
         {
-            return View(customers);
+            string connectionString = this.configuration.GetConnectionString("ConnectionString");
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand command = connection.CreateCommand();
+            command.CommandType=System.Data.CommandType.StoredProcedure;
+            command.CommandText = "PR_Customer_SelectAll";
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            return View(dt);
         }
         public IActionResult AddCustomer() {
             return View();

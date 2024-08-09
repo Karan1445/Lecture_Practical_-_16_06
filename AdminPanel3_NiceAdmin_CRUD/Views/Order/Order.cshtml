@@ -1,14 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model IEnumerable<OrderModel>
+﻿@using System.Data
+@model DataTable
+
 <div class="pagetitle">
     <h1>Order</h1>
     <nav>
@@ -38,16 +30,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var order in Model)
+            @foreach (DataRow order in Model.Rows)
             {
                 <tr>
-                    <th>@order.OrderID</th>
-                    <td>@order.OrderDate</td>
-                    <td>@order.CustomerId</td>
-                    <td>@order.PaymentMode</td>
-                    <td>@order.TotalAmount</td>
-                    <td>@order.ShippingAddress</td>
-                    <td>@order.UserID</td>
+                    <th>@order["OrderID"]</th>
+                    <td>@order["OrderDate"]</td>
+                    <td>@order["CustomerId"]</td>
+                    <td>@order["PaymentMode"]</td>
+                    <td>@order["TotalAmount"]</td>
+                    <td>@order["ShippingAddress"]</td>
+                    <td>@order["UserID"]</td>
                     <td>
                         <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
                         <button class="btn btn-danger">Delete</button>
