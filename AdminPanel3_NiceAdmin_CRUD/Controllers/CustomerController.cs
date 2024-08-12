@@ -23,6 +23,8 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             command.CommandType=System.Data.CommandType.StoredProcedure;
             command.CommandText = "PR_Customer_SelectAll";
             SqlDataReader reader = command.ExecuteReader();
+            Console.WriteLine("-------------------------------------------------------------------");
+         
             DataTable dt = new DataTable();
             dt.Load(reader);
             return View(dt);
@@ -34,6 +36,18 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             newData.CustomerID = customers.Count + 1;
             customers.Add(newData);
             return View("Index",customers);
+        }
+        public IActionResult DeleteInCustomer(int CustomerID)
+        {
+            string conStr = configuration.GetConnectionString("ConnectionString");
+            SqlConnection connection = new SqlConnection(conStr);
+            connection.Open();
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "PR_Customer_DeleteByPK";
+            cmd.Parameters.Add("@CustomerID", SqlDbType.Int).Value=CustomerID;
+            cmd.ExecuteNonQuery();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -25,10 +25,9 @@
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Order ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="OrderId" name="OrderID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-for="OrderId" name="OrderID" class="form-select" asp-items="@(new SelectList(ViewBag.OrderDropDown,"OrderID","OrderID"))">
+                            <option value="">Select Order ID</option>
+                  
                         </select>
                         <span asp-validation-for="OrderId" class="text-danger"></span>
                     </div>

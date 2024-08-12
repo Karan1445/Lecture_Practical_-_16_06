@@ -48,7 +48,7 @@
                     <td>@customer["UserID"]</td>
                     <td>
                         <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <a class="btn btn-danger" asp-route-CustomerID="@customer["CustomerID"]" asp-action="DeleteInCustomer" asp-controller="Customer">Delete</a>
                     </td>
                 </tr>
             }

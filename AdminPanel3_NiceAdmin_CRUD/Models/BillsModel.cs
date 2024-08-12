@@ -22,4 +22,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Models
         [Required(ErrorMessage = "This Field is compulsory")]
         public int UserID { get; set; }
     }
+    public class OrderDropDownModel { 
+        public int OrderID { get; set; }
+    }
 }

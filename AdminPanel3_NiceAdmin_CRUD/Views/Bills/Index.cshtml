@@ -29,8 +29,12 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (DataRow bills in Model.Rows)
+        <tbody>@{
+                if (Model == null)
+                {
+                    <h1>No Data</h1>
+                }
+                @foreach (DataRow bills in Model.Rows)
             {
                 <tr>
                      <th>@bills["BillID"]</th>
@@ -47,7 +51,8 @@
                     </td>
                 </tr>
             }
-
+            }
+ 
 
         </tbody>
     </table>
