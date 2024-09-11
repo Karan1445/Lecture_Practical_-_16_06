@@ -5,20 +5,100 @@
         <div class="card-body">
             <h5 class="card-title">Add New Bill</h5>
 
+
+          @* @using (@Html.BeginForm("SaveData","Bills"))
+            {
+              @Html.HiddenFor(item=>item.BillId);
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.BillNumber, htmlAttributes: new { @class = "col-sm-2 col-form-label" }, labelText: "Bill Number")
+                    <div class="col-sm-10">
+                    @Html.TextBoxFor(item => item.BillNumber, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(item => item.BillNumber,"", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>BillDate</label>
+                    <div class="col-sm-10">
+                        <input  class="form-control" asp-for="BillDate" name="BillDate" required />
+                        <span asp-validation-for="BillDate" class="text-danger"></span>
+                    </div>
+                </div>
+@* 
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.BillDate, htmlAttributes: new { @class = "col-sm-2 col-form-label"},labelText:"Bill Date")
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(item => item.BillDate, htmlAttributes: new { @class = "form-control"})
+                        @Html.ValidationMessageFor(item => item.BillDate, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div> *@
+
+               @*  <div class="row mb-3">
+                    @Html.LabelFor(item => item.OrderId, htmlAttributes: new { @class = "col-sm-2 col-form-label" }, labelText: "OrderID")
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(item => item.OrderId, ViewBag.OrderDropDown, "Select Order ID", htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(item => item.BillDate, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div> 
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.OrderId, htmlAttributes: new { @class = "col-sm-2 col-form-label" },labelText:"Order ID")
+                    <div class="col-sm-10">
+                        <select class="form-select" asp-for="OrderId" name="OrderID" asp-items="@(new SelectList(ViewBag.OrderDropDown,"OrderID","OrderID"))">
+                            <option value="">Select Order ID</option>
+                        </select>
+                        <span asp-validation-for="OrderId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.TotalAmount, htmlAttributes: new {@class="col-sm-2 col-form-label"},labelText:"Total Amount")
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(item=>item.TotalAmount,htmlAttributes:new{@class="form-control" })
+                        @Html.ValidationMessageFor(item=>item.TotalAmount,"",htmlAttributes:new{@class="text-danger"})
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.Discount, htmlAttributes: new { @class = "col-sm-2 col-form-label" }, labelText: "Discount")
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(item => item.Discount, htmlAttributes: new { @class = "form-control"})
+                        @Html.ValidationMessageFor(item => item.Discount, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.NetAmount, htmlAttributes: new { @class = "col-sm-2 col-form-label" }, labelText: "NetAmount")
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(item => item.NetAmount, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(item => item.NetAmount, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    @Html.LabelFor(item => item.UserID, htmlAttributes: new { @class = "col-sm-2 col-form-label" }, labelText: "User iD")
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(item => item.UserID, new List<SelectListItem> { new SelectListItem { Value = "1", Text = "Karan" } }, "Select User Id", htmlAttributes: new { @class = "form-select" })
+                        @Html.ValidationMessageFor(item => item.Discount, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+
+            }
+            *@ 
             <!-- Horizontal Form -->
-            <form asp-controller="Bills" asp-action="AddDataInController">
+            <form asp-controller="Bills" asp-action="SaveData">
+                <input type="hidden" asp-for="BillId"/>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>BillNumber</label>
                     <div class="col-sm-10">
                         
-                        <input type="text" asp-for="BillNumber" class="form-control" name="BillNumber"  required />
+                        <input  asp-for="BillNumber" class="form-control" name="BillNumber"  required />
                         <span asp-validation-for="BillNumber" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>BillDate</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control"asp-for="BillDate" name="BillDate" required />
+                        <input  class="form-control" asp-for="BillDate" name="BillDate" required />
                         <span asp-validation-for="BillDate" class="text-danger"></span>
                     </div>
                 </div>
@@ -27,7 +107,6 @@
                     <div class="col-sm-10">
                         <select id="inputState" asp-for="OrderId" name="OrderID" class="form-select" asp-items="@(new SelectList(ViewBag.OrderDropDown,"OrderID","OrderID"))">
                             <option value="">Select Order ID</option>
-                  
                         </select>
                         <span asp-validation-for="OrderId" class="text-danger"></span>
                     </div>
@@ -35,41 +114,58 @@
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>TotalAmount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" asp-for="TotalAmount" name="TotalAmount" required />
+                        <input  class="form-control" asp-for="TotalAmount" name="TotalAmount" required />
                         <span asp-validation-for="TotalAmount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Discount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" asp-for="Discount" name="Discount" required />
+                        <input  class="form-control" asp-for="Discount" name="Discount" required/>
                         <span asp-validation-for="Discount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>NetAmount</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="NetAmount" asp-for="NetAmount" required />
+                        <input  class="form-control" name="NetAmount" asp-for="NetAmount" required />
                         <span asp-validation-for="NetAmount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-for="UserID" asp-items="@(new SelectList(ViewBag.UserDropDownList,"UserID","UserName"))" name="UserID" class="form-select">
+                            <option value="">Select User</option>
                         </select>
                         <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
+
+                    <a type="reset" class="btn btn-secondary" asp-action="Index" asp-controller="Bills">Table Page</a>
                 </div>
-            </form><!-- End Horizontal Form -->
+            </form><!-- End Horizontal Form --> 
 
         </div>
     </div>
 </section>
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}

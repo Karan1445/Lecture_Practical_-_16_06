@@ -2,7 +2,7 @@
 @model DataTable
 <div class="pagetitle">
     <h1>Bills</h1>
-    <nav>
+    <nav>8
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Home</li>
             <li class="breadcrumb-item">Tables</li>
@@ -18,37 +18,42 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">BillId</th>
+                <th>Actions</th>
                 <th scope="col">BillNumber</th>
                 <th scope="col">BillDate</th>
                 <th scope="col">OrderID</th>
                 <th scope="col">TotalAmount</th>
                 <th scope="col">Discount</th>
                 <th scope="col">NetAmount</th>
-                <th scope="col">UserID</th>
-                <th>Action</th>
+                <th scope="col">UserName</th>
+                
             </tr>
         </thead>
         <tbody>@{
                 if (Model == null)
                 {
-                    <h1>No Data</h1>
+                    <h1>No Data</h1>    
                 }
                 @foreach (DataRow bills in Model.Rows)
             {
                 <tr>
-                     <th>@bills["BillID"]</th>
+                        <td class="row">
+                            <a class="col btn btn-warning" asp-route-billid="@bills["BillID"]" asp-controller="Bills"  asp-action="AddBills">Edit</a>
+
+                            <form asp-controller="Bills" asp-route-billsid="@bills["BillID"]" class="col align-items-cente" asp-action="DeleteInController">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">
+                                <span class="bi bi-trash"></span>
+                                </button>
+                            </form>
+                        </td>
                     <td>@bills["BillNumber"]</td>
                     <td>@bills["BillDate"]</td>
-                    <td>@bills["BillDate"]</td>
+                    <td>@bills["OrderID"]</td>
                     <td>@bills["TotalAmount"]</td>
-                    <td>@bills["TotalAmount"]</td>
-                    <td>@bills["TotalAmount"]</td>
-                    <td>@bills["TotalAmount"]</td>
-                    <td>
-                        <a class="btn btn-warning" asp-controller="Bills" asp-action="EditInController">Edit</a>
-                        <a class="btn btn-danger" asp-controller="Bills" asp-action="DeleteInController">Delete</a>
-                    </td>
+                    <td>@bills["Discount"]</td>
+                    <td>@bills["NetAmount"]</td>
+                    <td>@bills["UserName"]</td>
+                   
                 </tr>
             }
             }
@@ -59,3 +64,21 @@
     <!-- End Table with stripped rows -->
 
 </section>
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}

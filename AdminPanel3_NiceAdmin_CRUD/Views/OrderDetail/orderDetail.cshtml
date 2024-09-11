@@ -18,31 +18,34 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">OrderdetailsID</th>
+                <th>Action</th>
+                
                 <th scope="col">OrderId</th>
-                <th scope="col">ProductID</th>
+                <th scope="col">ProductName</th>
                 <th scope="col">Quality</th>
                 <th scope="col">Amount</th>
                 <th scope="col">ToatalAmount</th>
-                <th scope="col">UserID</th>
-                <th>Action</th>
+                <th scope="col">UserName</th>
+              
             </tr>
         </thead>
         <tbody>
             @foreach (DataRow orderDetails in Model.Rows)
             {
                 <tr>
-                    <th>@orderDetails["OrderDetailID"]</th>
+                    <td class="row">
+                        <a class=" col btn btn-warning" asp-action="AddOrderDetail" asp-route-OrderDetailId="@orderDetails["OrderDetailID"]" asp-controller="OrderDetail">Edit</a>
+                        <form class="col " asp-action="Delete" asp-controller="OrderDetail" asp-route-OrderDetailId="@orderDetails["OrderDetailID"]">
+                            <button class="bi bi-trash btn btn-danger" onclick="return confirm('Are you Sure!')"></button>
+                        </form>
+                    </td>
                     <td>@orderDetails["OrderID"]</td>
-                    <td>@orderDetails["ProductID"]</td>
+                    <td>@orderDetails["ProductName"]</td>
                     <td>@orderDetails["Quantity"]</td>
                     <td>@orderDetails["Amount"]</td>
                     <td>@orderDetails["TotalAmount"]</td>
-                    <td>@orderDetails["UserID"]</td>
-                    <td>
-                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
+                    <td>@orderDetails["UserName"]</td>
+                  
                 </tr>
             }
 
@@ -51,4 +54,21 @@
     </table>
     <!-- End Table with stripped rows -->
 
-</section>
+</section>@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}

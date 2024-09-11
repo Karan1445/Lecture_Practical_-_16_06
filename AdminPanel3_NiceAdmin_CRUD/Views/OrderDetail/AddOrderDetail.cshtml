@@ -5,22 +5,14 @@
             <h5 class="card-title">Add New Bill</h5>
 
             <!-- Horizontal Form -->
-            <form asp-controller="OrderDetail" asp-action="AddInController">
-                <div class="row mb-3">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">OrderID</label>
-                    <div class="col-sm-10">
-
-                        <input type="number" class="form-control" name="OrderID" required />
-                        <span asp-validation-for="OrderID" class="text-danger"></span>
-                    </div>
-                </div>
+            <form asp-controller="OrderDetail" asp-action="SaveData">
+                <input asp-for="OrderDetailID" type="hidden"/>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Order ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="OrderID" name="OrderID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-items="@(new SelectList(ViewBag.OrderDropDown,"OrderID","OrderID"))" asp-for="OrderID" name="OrderID" class="form-select">
+                            <option value="">Select Order</option>
+                           
                         </select>
                         <span asp-validation-for="OrderID" class="text-danger"></span>
                     </div>
@@ -28,35 +20,39 @@
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Product ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="ProductID" name="ProductID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-for="ProductID" asp-items="@(new SelectList(ViewBag.Prodlist,"ProductID","ProductName"))" name="ProductID" class="form-select">
+                            <option value="">Selct Porduct</option>
+                            
                         </select>
                         <span asp-validation-for="ProductID" class="text-danger"></span>
+                    </div>
+                </div>    <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Quantity</label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" asp-for="Quantity" name="Quantity" required />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Amount</label>
                     <div class="col-sm-10">
-                        <input type="number"asp-for="Amount" class="form-control" name="Amount" required />
+                        <input asp-for="Amount" class="form-control" name="Amount" required />
                         <span asp-validation-for="Amount" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">TotalAmount</label>
                     <div class="col-sm-10">
-                        <input type="number" asp-for="TotaAmount" class="form-control" name="TotalAmount" required />
-                        <span class="text-danger" asp-validation-for="TotaAmount"></span>
+                        <input  asp-for="TotalAmount" class="form-control" name="TotalAmount" required />
+                        <span class="text-danger" asp-validation-for="TotalAmount"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-items="@(new SelectList(ViewBag.UserDropDownList,"UserID","UserName"))" asp-for="UserID" name="UserID" class="form-select">
+                            <option value="">Select User</option>
                         </select>
                         <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
@@ -67,7 +63,7 @@
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a  class="btn btn-secondary" asp-action="orderDetail" asp-controller="OrderDetail">Table</a>
                 </div>
             </form><!-- End Horizontal Form -->
 
@@ -77,5 +73,23 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}</section>
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     }
 }

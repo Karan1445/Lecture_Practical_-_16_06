@@ -18,7 +18,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">CustomerID</th>
+                <th>Action</th>
                 <th scope="col">CustomerName</th>
                 <th scope="col">HomeAddress</th>
                 <th scope="col">Email</th>
@@ -26,17 +26,26 @@
                 <th scope="col">GST_NO</th>
                 <th scope="col">CityName</th>
                 <th scope="col">PinCode</th>
-
                 <th scope="col">NetAmount</th>
-                <th scope="col">UserID</th>
-                <th>Action</th>
+                <th scope="col">UserName</th>
+               
             </tr>
         </thead>
         <tbody>
             @foreach (DataRow customer in Model.Rows)
             {
                 <tr>
-                    <th>@customer["CustomerID"]</th>
+                    <td class="row">
+
+                        <a class=" col btn btn-warning" asp-action="AddCustomer" asp-controller="Customer" asp-route-CustomerID="@customer["CustomerID"]">Edit</a>
+                    
+                        <form  class="col" asp-route-CustomerID="@customer["CustomerID"]" asp-action="DeleteInCustomer" asp-controller="Customer">
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Are You Sure!')">
+                                <span class="bi bi-trash"></span>
+                            </button>
+
+                        </form>
+                    </td>
                     <td>@customer["CustomerName"]</td>
                     <td>@customer["HomeAddress"]</td>
                     <td>@customer["Email"]</td>
@@ -44,12 +53,9 @@
                     <td>@customer["GST_NO"]</td>
                     <td>@customer["CityName"]</td>
                     <td>@customer["PinCode"]</td>
-                    <td>@customer["PinCode"]</td>
-                    <td>@customer["UserID"]</td>
-                    <td>
-                        <a class="btn btn-warning" asp-action="AddEmployee" asp-controller="Home">Edit</a>
-                        <a class="btn btn-danger" asp-route-CustomerID="@customer["CustomerID"]" asp-action="DeleteInCustomer" asp-controller="Customer">Delete</a>
-                    </td>
+                    <td>@customer["NetAmount"]</td>
+                    <td>@customer["UserName"]</td>
+                    
                 </tr>
             }
 
@@ -59,3 +65,22 @@
     <!-- End Table with stripped rows -->
 
 </section>
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}

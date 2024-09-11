@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel3_NiceAdmin_CRUD", "AdminPanel3_NiceAdmin_CRUD\AdminPanel3_NiceAdmin_CRUD.csproj", "{860A1A13-52E8-4E12-B726-DB7D4E2E4DD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminPanel3_NiceAdmin_CRUD", "AdminPanel3_NiceAdmin_CRUD\AdminPanel3_NiceAdmin_CRUD.csproj", "{860A1A13-52E8-4E12-B726-DB7D4E2E4DD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

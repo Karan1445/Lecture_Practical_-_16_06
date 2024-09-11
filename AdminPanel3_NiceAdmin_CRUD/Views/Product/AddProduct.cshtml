@@ -5,42 +5,42 @@
             <h5 class="card-title">Add New Product</h5>
 
             <!-- Horizontal Form -->
-            <form asp-controller="Product" asp-action="AddInController">
+            <form asp-controller="Product" asp-action="SaveData">
+                <input asp-for="ProductID" type="hidden"/>
                 <div class="row mb-3">
                     <label for="ProductName" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Product Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="ProductName" name="ProductName" required />
+                        <input  class="form-control" asp-for="ProductName" name="ProductName" required />
                         <span class="text-danger" asp-validation-for="ProductName"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="ProductPrice" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Product Price</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" asp-for="ProductPrice" name="ProductPrice" required />
+                        <input  class="form-control" asp-for="ProductPrice" name="ProductPrice" required />
                         <span class="text-danger" asp-validation-for="ProductPrice"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="ProductCode" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Product Code</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="ProductCode" name="ProductCode" required />
+                        <input  class="form-control" asp-for="ProductCode" name="ProductCode" required />
                         <span class="text-danger" asp-validation-for="ProductCode"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="Description" class="col-sm-2 col-form-label"><span class="text-danger">*</span>Description</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" asp-for="Description" name="Description" required />
+                        <input  class="form-control" asp-for="Description" name="Description" required />
                         <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-for="UserID" name="UserID" asp-items="@(new SelectList(ViewBag.UserDropDownList,"UserID","UserName"))" class="form-select">
+                            <option value="">Select User</option>
+                           
                         </select>
                         <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
@@ -48,7 +48,7 @@
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a type="reset" class="btn btn-secondary" asp-action="Prodcut" asp-controller="Product">Table</a>
                 </div>
             </form><!-- End Horizontal Form -->
 
@@ -59,5 +59,23 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     }
 }

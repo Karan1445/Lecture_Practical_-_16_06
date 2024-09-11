@@ -5,7 +5,8 @@
             <h5 class="card-title">Add New Bill</h5>
 
             <!-- Horizontal Form -->
-            <form asp-controller="Customer" asp-action="AddInCustomer">
+            <form asp-controller="Customer" asp-action="SaveData">
+                <input type="hidden"  asp-for="CustomerID" />
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>CustomerName</label>
                     <div class="col-sm-10">
@@ -67,17 +68,15 @@
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select">
-                            <option selected>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select" asp-items="@(new SelectList(ViewBag.UserDropDownList,"UserID","UserName"))">
+                            <option value="">Select User</option>
                         </select>
                     <span asp-validation-for="UserID" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a type="reset" class="btn btn-secondary" asp-action="Index" asp-controller="Customer">Table</a>
                 </div>
             </form><!-- End Horizontal Form -->
 
@@ -87,5 +86,22 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}@{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+@{
+    if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     }
 }
