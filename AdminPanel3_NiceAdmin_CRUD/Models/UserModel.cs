@@ -31,4 +31,12 @@ namespace AdminPanel3_NiceAdmin_CRUD.Models
         [Required(ErrorMessage = "IsActive status is compulsory.")]
         public bool? IsActive { get; set; }
     }
+    public class UserLogin {
+        [Required(ErrorMessage = "UserName is compulsory.")]
+        [Display(Name ="UserName")]
+        public String? UserName { get; set; }
+        [Required(ErrorMessage = "Password is compulsory.")]
+        [Display(Name = "PassWord")]
+        public String? Password { get; set; }
+    }
 }

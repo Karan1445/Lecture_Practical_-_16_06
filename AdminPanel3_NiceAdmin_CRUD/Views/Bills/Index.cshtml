@@ -2,7 +2,7 @@
 @model DataTable
 <div class="pagetitle">
     <h1>Bills</h1>
-    <nav>8
+    <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Home</li>
             <li class="breadcrumb-item">Tables</li>
@@ -18,14 +18,14 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Actions</th>
-                <th scope="col">BillNumber</th>
-                <th scope="col">BillDate</th>
-                <th scope="col">OrderID</th>
-                <th scope="col">TotalAmount</th>
+                <th>Actions</th> 
+                <th scope="col">Bill Number</th>
+                <th scope="col">Bill Date</th>
+                <th scope="col">Order ID</th>
+                <th scope="col">Total Amount</th>
                 <th scope="col">Discount</th>
-                <th scope="col">NetAmount</th>
-                <th scope="col">UserName</th>
+                <th scope="col">Net Amount</th>
+                <th scope="col">User Name</th>
                 
             </tr>
         </thead>
@@ -67,7 +67,7 @@
 @{
     if (TempData["ErrorMessage"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             @TempData["ErrorMessage"]
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

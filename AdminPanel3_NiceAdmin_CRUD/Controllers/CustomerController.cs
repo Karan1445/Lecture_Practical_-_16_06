@@ -4,18 +4,22 @@ using System.Data;
 using System.Data.SqlClient;
 namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 {
+    [CheckAccess]
     public class CustomerController : Controller
     {
+        #region extras
         public static List<CustomerModel> customers = new List<CustomerModel>()
         {
          new CustomerModel{ CustomerID=1,CustomerName="karan",HomeAddress="Rajkot",Email="goheljitu164@gmail.com",MobileNo="8141953822",GST_NO="124555sd5455",CityName="Rajkot",PinCode="360003",NetAmount=150,UserID=1},
         };
+        #endregion
         IConfiguration configuration;
         public CustomerController(IConfiguration _configuration) {
             configuration = _configuration;
         }
         public IActionResult Index()
         {
+            #region index
             string connectionString = this.configuration.GetConnectionString("ConnectionString");
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -28,8 +32,10 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             DataTable dt = new DataTable();
             dt.Load(reader);
             return View(dt);
+            #endregion
         }
         public IActionResult AddCustomer(int CustomerID) {
+            #region add/edit
             string connectionString = this.configuration.GetConnectionString("ConnectionString");
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
@@ -73,9 +79,12 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             ViewBag.UserDropDownList = UserDropDownList;
             #endregion
             return View(CustomerFillupModel);
+            #endregion
         }
         [HttpPost]
         public IActionResult SaveData(CustomerModel customermodel) {
+            
+            #region postdata
             bool Save_or_update = false;
             try
             {
@@ -126,6 +135,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
                 return RedirectToAction("Index");
 
             }
+            #endregion
 
         }
 
@@ -134,6 +144,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 
         public IActionResult DeleteInCustomer(int CustomerID)
         {
+            #region delete
             try
             {
                 string conStr = configuration.GetConnectionString("ConnectionString");
@@ -152,6 +163,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             }
             TempData["SuccessMessage"] = "Customer details have been Deleted successfully!";
             return RedirectToAction("Index");
+            #endregion
         }
     }
 }

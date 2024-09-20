@@ -5,18 +5,22 @@ using System.Data;
 
 namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 {
+    [CheckAccess]
     public class ProductController : Controller
     {
+        #region demo data 
         public static List<ProductModel> products = new List<ProductModel>
         {
             new ProductModel{ ProductID=1,ProductName="TailorManagementSystem",ProductCode="1223455",ProductPrice=120.52,Description="About Manage Project of Employee",UserID=1},
                   new ProductModel{ ProductID=2,ProductName="GarbageManagementSystem",ProductCode="1223456",ProductPrice=58.0,Description="About Manage Project of Garbage",UserID=2},
                   new ProductModel{ ProductID=3,ProductName="MobikeManagementSystem",ProductCode="1223457",ProductPrice=90.0,Description="About Manage Project of Mobile",UserID=3},
         };
+        #endregion
         public IConfiguration configuration;
         public ProductController(IConfiguration config) {
             configuration = config;
         }
+        #region index
         public IActionResult Prodcut()
         {
 
@@ -31,6 +35,8 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             dt.Load(reader);
             return View(dt);    
         }
+        #endregion
+        #region add/Edit DAtA
         public IActionResult AddProduct(int ProductID) {
             #region userdropdown
             string sqlconnectionstring = this.configuration.GetConnectionString("ConnectionString");
@@ -74,7 +80,8 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             #endregion
             return View(Fillupmodel);
         }
-
+        #endregion
+        #region savedata
         public IActionResult SaveData(ProductModel productmodel) {
 
             {
@@ -123,6 +130,8 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 
             }
         }
+        #endregion 
+        #region Delete
         public IActionResult Delete(int ProductID)
         {
             try
@@ -139,17 +148,20 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = "An error occurred while Deleting User details: " + e.Message;
+                TempData["ErrorMessage"] = "An error occurred while Deleting Product details: " + e.Message;
                 return RedirectToAction("Prodcut");
             }
-            TempData["SuccessMessage"] = "User details have been Deleted successfully!";
+            TempData["SuccessMessage"] = "Product details have been Deleted successfully!";
             return RedirectToAction("Prodcut");
         }
+        #endregion
+        #region extra metod
         public IActionResult AddInController(ProductModel newData) {
 
             newData.ProductID = products.Count + 1;
             products.Add(newData);
             return View("Prodcut",products);
             }
+        #endregion
     }
 }

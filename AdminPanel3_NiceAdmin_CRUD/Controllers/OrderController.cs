@@ -4,19 +4,24 @@ using System.Data;
 using System.Data.SqlClient;
 namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 {
+    [CheckAccess]
     public class OrderController : Controller
     {
+        #region TestinDATA
         public static List<OrderModel> order = new List<OrderModel>() {
         new OrderModel{OrderID=1,OrderDate=DateTime.Now,CustomerId=1,PaymentMode="upi",TotalAmount=120.22,ShippingAddress="Rajkot",UserID=1},
         new OrderModel{OrderID=1,OrderDate=DateTime.Now,CustomerId=1,PaymentMode="upi",TotalAmount=120.22,ShippingAddress="Rajkot",UserID=1},
         new OrderModel{OrderID=1,OrderDate=DateTime.Now,CustomerId=1,PaymentMode="upi",TotalAmount=120.22,ShippingAddress="Rajkot",UserID=1},
         new OrderModel{OrderID=1,OrderDate=DateTime.Now,CustomerId=1,PaymentMode="upi",TotalAmount=120.22,ShippingAddress="Rajkot",UserID=1},
         new OrderModel{OrderID=1,OrderDate=DateTime.Now,CustomerId=1,PaymentMode="upi",TotalAmount=120.22,ShippingAddress="Rajkot",UserID=1},};
-
+        #endregion
+        #region Configure and Constructor
         IConfiguration configuration;
         public OrderController(IConfiguration _config) {
             configuration = _config;
             }
+        #endregion
+        #region Order method or Index
         public IActionResult Order()
         {
             string sqlconnectionstring = this.configuration.GetConnectionString("ConnectionString");
@@ -30,6 +35,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             dt.Load(reader);
             return View(dt);
         }
+        #endregion
         public IActionResult AddOrder(int OrderID) {
             #region Fill up Order MOdel
             string sqlconnectionstring = this.configuration.GetConnectionString("ConnectionString");
@@ -88,7 +94,9 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             #endregion
             return View(fillupmodel);
         }
+        #region Delete
         public IActionResult Delete(int OrderID) {
+            
             try
             {
                 string conStr = configuration.GetConnectionString("ConnectionString");
@@ -111,13 +119,16 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             TempData["SuccessMessage"] = "Order details have been Deleted successfully!";
             return RedirectToAction("Order");
         }
+        #endregion
+        #region PostDATa
         public IActionResult SaveData(OrderModel ordermodel) {
             bool Save_or_update = false;
             try
             {
                 if (!ModelState.IsValid)
                 {
-
+                    TempData["ErrorMessage"] = "An error occurred while saving Order details: " ;
+                    return RedirectToAction("Order");
                 }
                 String sqlConnectionString = this.configuration.GetConnectionString("ConnectionString");
                 SqlConnection conneciton = new SqlConnection(sqlConnectionString);
@@ -156,5 +167,6 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             TempData["SuccessMessage"] = "Order's details have been Updated successfully!";
             return RedirectToAction("Order");
         }
+        #endregion
     }
 }

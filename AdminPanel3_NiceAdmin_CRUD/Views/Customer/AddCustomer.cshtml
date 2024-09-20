@@ -2,7 +2,7 @@
 <section class="section">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Add New Bill</h5>
+            <h5 class="card-title">Add New Customer</h5>
 
             <!-- Horizontal Form -->
             <form asp-controller="Customer" asp-action="SaveData">
@@ -68,7 +68,8 @@
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label"><span class="text-danger">*</span>User ID</label>
                     <div class="col-sm-10">
-                        <select id="inputState" asp-for="UserID" name="UserID" class="form-select" asp-items="@(new SelectList(ViewBag.UserDropDownList,"UserID","UserName"))">
+                        <input hidden asp-for="UserID" value="@CommonAccess.UserID()" />
+                        <select id="inputState" disabled asp-for="UserID" name="UserID" class="form-select" asp-items="@(new SelectList(ViewBag.UserDropDownList,"UserID","UserName",@CommonAccess.UserID()))">
                             <option value="">Select User</option>
                         </select>
                     <span asp-validation-for="UserID" class="text-danger"></span>

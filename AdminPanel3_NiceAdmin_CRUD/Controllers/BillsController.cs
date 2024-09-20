@@ -6,9 +6,10 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 {
+    [CheckAccess]
     public class BillsController : Controller
     {
-      
+
         public int lastid;
         public static List<BillsModel> bills = new List<BillsModel>() { 
         };
@@ -19,7 +20,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
         }
         public IActionResult Index()
         {
-
+            #region index
             string connectionstring = this.configuration.GetConnectionString("ConnectionString");
             SqlConnection connection = new SqlConnection(connectionstring);
             connection.Open();
@@ -30,9 +31,11 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             DataTable dt=new DataTable();
             dt.Load(reader);
             return View(dt);
+            #endregion
         }
-        
+
         public IActionResult AddBills(int billid) {
+            #region add/saveform
             string connectionStr = configuration.GetConnectionString("ConnectionString");
             SqlConnection connection = new SqlConnection(connectionStr);
             connection.Open();
@@ -86,11 +89,13 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 
             }
             return View(Fillupmodel);
+            #endregion
         }
 
         [HttpPost]
         public IActionResult SaveData(BillsModel BillsModel)
         {
+            #region save/update
             bool Save_or_update = false;
             try
             {
@@ -133,7 +138,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             }
             TempData["SuccessMessage"] = "Bill details have been Updated successfully!";
             return RedirectToAction("Index");
-
+            #endregion
         }
         public IActionResult EditInController(int billsid) {
             BillsModel fillUpData = bills[billsid];

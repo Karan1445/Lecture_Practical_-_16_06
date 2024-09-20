@@ -5,12 +5,16 @@ using System.Data;
 
 namespace AdminPanel3_NiceAdmin_CRUD.Controllers
 {
+    [CheckAccess]
     public class OrderDetailController : Controller
     {
+        #region extradata
         public static List<OrderDetailModel> orderDetails = new List<OrderDetailModel>() {
         new OrderDetailModel{OrderID=1,OrderDetailID=1,ProductID=1,Quantity=10,Amount=120,TotalAmount=1200,UserID=1 }
         };
+        #endregion
         public IConfiguration configuration;
+
         public OrderDetailController(IConfiguration config) {
             configuration = config;
         }
@@ -105,6 +109,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             return View(fillupmodel);
         }
         public IActionResult Delete(int OrderDetailId) {
+            #region Delete
             try
             {
                 string conStr = configuration.GetConnectionString("ConnectionString");
@@ -124,6 +129,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             }
             TempData["SuccessMessage"] = "Orderdetails's details have been Deleted successfully!";
             return RedirectToAction("orderDetail");
+            #endregion
         }
         public IActionResult AddInController(OrderDetailModel newData) {
             newData.OrderDetailID = orderDetails.Count + 1;
@@ -132,6 +138,7 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
         }
         [HttpPost]
         public IActionResult SaveData(OrderDetailModel orderdetailmodel) {
+            #region savedata
             bool Save_or_update = false;
             try
             {
@@ -176,5 +183,6 @@ namespace AdminPanel3_NiceAdmin_CRUD.Controllers
             TempData["SuccessMessage"] = "OrderDeatials's details have been Updated successfully!";
             return RedirectToAction("orderDetail");
         }
+        #endregion
     }
 }
